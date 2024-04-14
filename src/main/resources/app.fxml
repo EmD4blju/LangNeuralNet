@@ -7,14 +7,12 @@
 <?import javafx.scene.layout.Pane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emk4.GUI.Controller">
-   <children>
-      <Pane prefHeight="400.0" prefWidth="597.0">
-         <children>
-            <TextField fx:id="result" layoutX="36.0" layoutY="283.0" prefHeight="98.0" prefWidth="291.0" />
-            <TextArea fx:id="userInput" layoutX="36.0" layoutY="14.0" prefHeight="200.0" prefWidth="525.0" />
-            <Button fx:id="submitButton" layoutX="359.0" layoutY="283.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="46.0" prefWidth="202.0" text="SUBMIT" />
-            <Button fx:id="testButton" layoutX="359.0" layoutY="332.0" mnemonicParsing="false" onAction="#onTest" prefHeight="46.0" prefWidth="202.0" text="INITIATE TESTS" />
-         </children>
+   <Pane prefHeight="400.0" prefWidth="597.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="36.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="156.0" prefWidth="525.0">
+         <Button fx:id="submitButton" layoutX="323.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onSubmit" prefHeight="46.0" prefWidth="202.0" text="SUBMIT" />
+         <Button fx:id="trainButton" layoutX="323.0" layoutY="80.0" mnemonicParsing="false" onAction="#onTrain" prefHeight="46.0" prefWidth="202.0" text="INITIATE TESTS" />
+         <TextField fx:id="result" layoutX="1.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="286.0" />
       </Pane>
-   </children>
+      <TextArea fx:id="userInput" layoutX="36.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="525.0" />
+   </Pane>
 </AnchorPane>

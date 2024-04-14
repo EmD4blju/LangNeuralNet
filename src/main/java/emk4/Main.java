@@ -25,6 +25,7 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         stage.setTitle("NeuralNetClient");
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
     }
 }
