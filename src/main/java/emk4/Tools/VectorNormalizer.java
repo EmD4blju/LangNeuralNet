@@ -1,4 +1,4 @@
-package emk4;
+package emk4.Tools;
 
 public class VectorNormalizer {
     public static double[] normalize(double[] vector){

@@ -1,28 +1,30 @@
+/**
+ * @author Mikołaj Warda s28034 | EmDablju
+ */
+
 package emk4;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import java.io.*;
-import java.nio.file.Files;
-import java.util.Objects;
 
 
-public class Main {
+
+public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
-        File dir = new File("src/main/resources/lang");
-        NeuralNet neuralNet = new NeuralNet(dir.getPath());
-
-        for(File subDir : Objects.requireNonNull(dir.listFiles())){
-            System.out.println("\t\t\t\t\t\t\t=-=-=-=-=-=-= DIRECTORY " + subDir.getName() + " =-=-=-=-=-=-=");
-            File[] files = subDir.listFiles();
-            for(File file : Objects.requireNonNull(files)){
-                System.out.println("=-=-=-=-=-=-= FILE " + file.getName() + " =-=-=-=-=-=-=");
-                double[] preparedInputData = DataPreparator.prepareData(
-                        DataPreparator.stringifyFileLines(Files.readAllLines(file.toPath()))
-                );
-                neuralNet.train(preparedInputData, subDir.getName());
-            }
-        }
-
+        launch(args);
     }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/app.fxml"));
+        Parent root = fxmlLoader.load();
+        stage.setTitle("NeuralNetClient");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 }

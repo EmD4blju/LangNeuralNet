@@ -1,5 +1,7 @@
 package emk4;
 
+import emk4.Tools.DataPreparator;
+
 import java.io.File;
 import java.util.*;
 
@@ -32,6 +34,16 @@ public class NeuralNet {
         if(!activatedPerceptron.lang.equals(correctLang)){
             perceptrons.forEach(perceptron -> perceptron.train(inputVector, correctLang, activatedPerceptron.lang));
         }
+    }
+
+    public String test(double[] inputVector){
+        perceptrons.forEach(perceptron -> perceptron.calculateNet(inputVector));
+        Perceptron activatedPerceptron = Collections.max(
+                perceptrons,
+                Comparator.comparingDouble(perceptrons -> perceptrons.net)
+        );
+        System.out.println("ACTIVATED: " + activatedPerceptron);
+        return activatedPerceptron.lang;
     }
 
 

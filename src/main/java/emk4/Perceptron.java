@@ -1,12 +1,12 @@
-package emk4;
 /**
  * @author Mikołaj Warda s28034
  */
 
-import emk4.Exceptions.NotCompatibleVectorsException;
+package emk4;
+import emk4.Tools.VectorNormalizer;
 import java.util.*;
 
-public class Perceptron {
+public class Perceptron{
 
     private double threshold;
     private double[] weightsVector;
