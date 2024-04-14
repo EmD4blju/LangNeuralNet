@@ -23,14 +23,15 @@ public class NeuralNet {
     }
 
     public void train(double[] inputVector, String correctLang){
-        perceptrons.forEach(perceptron -> {
-            perceptron.train(inputVector, correctLang);
-//            perceptron.normalizeWeightVector();
-        });
-
-        Perceptron perceptron = Collections.max(perceptrons, Comparator.comparingDouble(p -> p.net));
-        System.out.println("Activated: "+perceptron);
-
+        perceptrons.forEach(perceptron -> perceptron.calculateNet(inputVector));
+        Perceptron activatedPerceptron = Collections.max(
+                perceptrons,
+                Comparator.comparingDouble(perceptron -> perceptron.net)
+        );
+        System.out.println("ACTIVATED: " + activatedPerceptron);
+        if(!activatedPerceptron.lang.equals(correctLang)){
+            perceptrons.forEach(perceptron -> perceptron.train(inputVector, correctLang, activatedPerceptron.lang));
+        }
     }
 
 

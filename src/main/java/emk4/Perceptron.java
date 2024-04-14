@@ -3,9 +3,8 @@ package emk4;
  * @author Mikołaj Warda s28034
  */
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import emk4.Exceptions.NotCompatibleVectorsException;
+import java.util.*;
 
 public class Perceptron {
 
@@ -24,40 +23,27 @@ public class Perceptron {
         this.learnConst = learnConst;
     }
 
-    public void train(double[] inputVector, String correctLang){
-        System.out.println("=-=-=-= TRAINING =-=-=-=" + correctLang + ", " + lang);
-        for(int i = 0; i < inputVector.length; i++) {
-            net = calculateNet(inputVector);
-//            int correctDecision = decisions.get(lang.equals(correctLang) ? lang : "other");
-//            int predictedDecision = net >= threshold ? 1 : 0;
-//            System.out.println("correctDecision: " + correctDecision + ", predictedDecision: " + predictedDecision);
-//            if(!(correctDecision == predictedDecision)){
-//                learn(inputVector, correctDecision, predictedDecision);
-//            }
-        }
-        System.out.println(this);
+    public void train(double[] inputVector, String correctLang, String predictedLang){
+        int correctDecision = decisions.containsKey(correctLang)
+                ? decisions.get(correctLang) : decisions.get("other");
+        int predictedDecision = decisions.containsKey(predictedLang)
+                ? decisions.get(predictedLang) : decisions.get("other");
+
+        learn(inputVector, correctDecision, predictedDecision);
     }
 
-    public void normalizeWeightVector(){
-        double vectorLength = calculateWeightVectorLength();
-        for (int i = 0; i < weightsVector.length; i++) {
-            weightsVector[i] /= vectorLength;
-        }
-    }
-    private double calculateWeightVectorLength(){
-        double vectorLength = 0d;
-        for(double weight : weightsVector){
-            vectorLength += Math.pow(weight, 2);
-        }
-        return Math.sqrt(vectorLength);
-    }
     protected void learn(double[] inputVector, int correctDecision, int predictedDecision) {
-        threshold = threshold - (correctDecision - predictedDecision * learnConst);
-        weightsVector = calculateNewWeights(inputVector, learnConst, correctDecision, predictedDecision);
-        net = calculateNet(inputVector);
+        threshold = updateThreshold(correctDecision, predictedDecision);
+        weightsVector = updateWeights(inputVector, correctDecision, predictedDecision);
+        calculateNet(inputVector);
+        weightsVector = VectorNormalizer.normalize(weightsVector);
     }
 
-    private double[] calculateNewWeights(double[] inputVector, double learnConst, int correctDecision, int predictedDecision) {
+    private double updateThreshold(int correctDecision, int predictedDecision){
+        return threshold - (correctDecision - predictedDecision * learnConst);
+    }
+
+    private double[] updateWeights(double[] inputVector, int correctDecision, int predictedDecision) {
         double[] newWeights = new double[weightsVector.length];
         for(int i = 0; i < newWeights.length; i++){
             newWeights[i] = weightsVector[i] + (inputVector[i] * (correctDecision - predictedDecision) * learnConst);
@@ -65,22 +51,20 @@ public class Perceptron {
         return newWeights;
     }
 
-    private double calculateNet(double[] inputVector) {
-        double output = 0d;
+    protected void calculateNet(double[] inputVector) {
+        net = 0d;
         for(int i = 0; i < weightsVector.length; i++){
-            output += weightsVector[i] * inputVector[i];
+            net += weightsVector[i] * inputVector[i];
         }
-        return output - threshold;
     }
 
     @Override
     public String toString() {
-        return "Perceptron{" +
+        return "Perceptron " + lang + " {" +
                 "net=" + net +
                 ", weightsVector=" + Arrays.toString(weightsVector) +
                 ", decisions=" + decisions +
                 ", threshold=" + threshold +
-                ", lang='" + lang + '\'' +
                 ", learnConst=" + learnConst +
                 '}';
     }

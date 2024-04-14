@@ -1,12 +1,10 @@
 package emk4;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DataPreparator {
 
-    public static String parseData(List<String> fileLines){
+    public static String stringifyFileLines(List<String> fileLines){
         StringBuilder stringBuilder = new StringBuilder();
         for(String line : fileLines){
             stringBuilder.append(line);
@@ -49,7 +47,7 @@ public class DataPreparator {
     }
 
     public static Map<String, Integer> initDecisions(String subDir) {
-        Map<String, Integer> decisions = new HashMap<>();
+        Map<String, Integer> decisions = new LinkedHashMap<>();
         decisions.put(subDir, 1);
         decisions.put("other", 0);
         return decisions;

@@ -11,23 +11,18 @@ public class Main {
         File dir = new File("src/main/resources/lang");
         NeuralNet neuralNet = new NeuralNet(dir.getPath());
 
-        neuralNet.perceptrons.forEach(System.out::println);
+        for(File subDir : Objects.requireNonNull(dir.listFiles())){
+            System.out.println("\t\t\t\t\t\t\t=-=-=-=-=-=-= DIRECTORY " + subDir.getName() + " =-=-=-=-=-=-=");
+            File[] files = subDir.listFiles();
+            for(File file : Objects.requireNonNull(files)){
+                System.out.println("=-=-=-=-=-=-= FILE " + file.getName() + " =-=-=-=-=-=-=");
+                double[] preparedInputData = DataPreparator.prepareData(
+                        DataPreparator.stringifyFileLines(Files.readAllLines(file.toPath()))
+                );
+                neuralNet.train(preparedInputData, subDir.getName());
+            }
+        }
 
-//        for(File subDir : Objects.requireNonNull(dir.listFiles())){
-//            File[] files = subDir.listFiles();
-//            for(int i = 0; i < Objects.requireNonNull(files).length; i++){
-//                String parsedData = DataPreparator.parseData(Files.readAllLines(files[i].toPath()));
-//                double[] preparedInputData = DataPreparator.prepareData(parsedData);
-//                neuralNet.train(preparedInputData, subDir.getName());
-//            }
-//        }
-
-        for(int i = 0; i < 3; i++)
-            neuralNet.train(DataPreparator.prepareData("Cześć co u Ciebie słychać"), "pl");
-
-
-
-        neuralNet.perceptrons.forEach(System.out::println);
     }
 
 }
