@@ -30,28 +30,3 @@ Utwórz samodzielnie zbiór danych treningowych. Utwórz 3-4 osobne foldery i na
 ### Testowanie
 
 Zapewnij interfejs umożliwiający wprowadzenie krótkiego tekstu, który zostanie sklasyfikowany przez Twój program.
-
-### Porównywanie Wartości "Net" Bez Softmax:
-
-1. **Trenowanie:**
-    - Sieć z jedną warstwą o liniowych neuronach przetwarza dane wejściowe.
-    - Wyniki "net" z neuronów wyjściowych są otrzymywane bezpośrednio jako sumy ważone danych wejściowych:
-      \[
-      net_i = \sum_{j=1}^{N} w_{ij} \cdot x_j
-      \]
-    - \( net_i \) to wynik "net" dla neuronu \( i \),
-    - \( w_{ij} \) to waga między neuronem \( i \) a wejściem \( j \),
-    - \( x_j \) to wartość wejścia dla neuronu \( j \).
-
-2. **Testowanie:**
-    - Podczas testowania, możesz porównywać te wartości "net" dla różnych neuronów wyjściowych.
-    - Wybierz neuron z największą wartością "net" jako przewidywaną klasę/język.
-
-
-
-
-
-
-
-
-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=
