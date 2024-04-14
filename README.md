@@ -1,4 +1,4 @@
-## Task
+## Language Neural Network
 
 Implement a 1-layer neural network that recognizes the language of the given text.
 
