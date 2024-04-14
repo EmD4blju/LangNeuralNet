@@ -1,32 +1,32 @@
-## Zadanie
+## Task
 
-Zaimplementuj 1-warstwową sieć neuronową rozpoznającą język zadanego tekstu.
+Implement a 1-layer neural network that recognizes the language of the given text.
 
-### Sieć neuronowa
+### Neural Network
 
-Sieć neuronowa ma tyle neuronów, ile jest unikalnych języków w zbiorze danych. Sieć neuronowa powinna je rozpoznać na podstawie danych treningowych.
+The neural network has as many neurons as there are unique languages in the dataset. The neural network should recognize them based on the training data.
 
-### Representacja wejścia
+### Input Representation
 
-Wektor wejściowy reprezentuje proporcję każdej litery ASCII w danym tekście.
+The input vector represents the proportion of each ASCII letter in the given text.
 
-#### Przykład:
+#### Example:
 
-- Tekst wejściowy: „tools of ai”
-- Wektor: 1/9, 0, 0, 0, 0, 1/9, 0, 0, 1/9, 0, 0, 1/9, 0, 0, 1/3, 0, 0, 0, 1/9, 1/9, 0, 0, 0, 0, 0, 0
+- Input Text: "tools of ai"
+- Vector: 1/9, 0, 0, 0, 0, 1/9, 0, 0, 1/9, 0, 0, 1/9, 0, 0, 1/3, 0, 0, 0, 1/9, 1/9, 0, 0, 0, 0, 0, 0
 
-### Wyjście
+### Output
 
-Każdy neuron oblicza swoje wyjście liniowe (net). Użyj selektora maksimum, aby znaleźć, który neuron jest aktywowany (1) i załóż, że inne neurony nie są aktywowane (0).
+Each neuron calculates its linear output (net). Use a maximum selector to find which neuron is activated (1) and assume that the other neurons are not activated (0).
 
-### Trenowanie
+### Training
 
-Należy zastosować regułę delta. Po każdym kroku uczenia wektory wag można znormalizować, aby poprawić klasyfikację.
+Apply the delta rule. After each learning step, weight vectors can be normalized to improve classification.
 
-### Dane
+### Data
 
-Utwórz samodzielnie zbiór danych treningowych. Utwórz 3-4 osobne foldery i nadaj im nazwy odpowiadające językom (pl, en, de ...). Każdy folder zawiera pliki tekstowe (10+) w określonym języku - jeden plik zawiera kilka akapitów tekstu. Upewnij się, że wybrany język może być reprezentowany przez znaki ascii.
+Create a dataset independently for training. Create 3-4 separate folders and name them according to languages (pl, en, de...). Each folder contains text files (10+) in a specific language - one file contains several paragraphs of text. Make sure the chosen language can be represented by ASCII characters.
 
-### Testowanie
+### Testing
 
-Zapewnij interfejs umożliwiający wprowadzenie krótkiego tekstu, który zostanie sklasyfikowany przez Twój program.
+Provide an interface that allows inputting a short text to be classified by your program.
