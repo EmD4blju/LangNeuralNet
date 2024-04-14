@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import java.io.File;
@@ -17,6 +18,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    @FXML
+    private Label copyright = new Label();
     @FXML
     private TextField result = new TextField();
     @FXML
@@ -36,6 +39,7 @@ public class Controller implements Initializable {
         userInput.setWrapText(true);
         result.setEditable(false);
         result.textProperty().bind(resultProperty);
+        copyright.setText("Powered by AI © EmDablju");
     }
 
     public void onSubmit(ActionEvent actionEvent) {
